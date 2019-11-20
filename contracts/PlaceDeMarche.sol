@@ -11,7 +11,8 @@ contract PlaceDeMarche is Ownable {
   mapping(address => string) public  names;
   mapping (address => bool) private addressBannies; // address bannies true adress bannies false
   mapping (uint => Demande) public demandes;
-  mapping (uint =>mapping(address=> bool))public candidates;
+  mapping (uint =>mapping(uint => address))public candidates;
+  uint[] CandidatsCounter;
   mapping(uint =>mapping(address=> uint256)) private _balance;
   uint demandeCounter;
  mapping(uint => mapping(address =>uint)) private delytopay;
@@ -113,6 +114,9 @@ function inscription(string memory nume) public  {
     function getNumberOfDemande() public view returns (uint) {
       return demandeCounter;
     }
+    function getNumberOfMyCandidats(uint _indice) public view returns (uint) {
+      return CandidatsCounter[_indice];
+    }
 
     function getDemandesOuverte() public view returns ( uint[] memory demandesOuverte) {
       // prepare output array
@@ -175,7 +179,8 @@ function inscription(string memory nume) public  {
         require(msg.sender != demende.entreprise);
         require(estMembre(msg.sender),"veuillez vous inscrire");
         require(reputation[msg.sender]>= demende.minReputation, "reputation insuffisante pour acceder a cette offre");
-        candidates[_indice][msg.sender];
+        CandidatsCounter[_indice] +=1;
+        candidates[_indice][CandidatsCounter[_indice]]= msg.sender;
         links[msg.sender].entreprise = demende.entreprise;
         links[msg.sender].url = "";
         emit LogPostuler(
@@ -188,12 +193,12 @@ function inscription(string memory nume) public  {
 
     }
 
-    function accepterOffre(uint indDemande, address _candidats) public {
+    function accepterOffre(uint indDemande,uint indiceCandidat, address _candidats) public {
         //permet à l’entreprise d’accepter un illustrateur. La demande est alors ENCOURS jusqu’à sa remise
         require(demandes[indDemande].entreprise == msg.sender);
         require(demandes[indDemande].etatDemande == Etat.OUVERTE);
+        require(candidates[indDemande][indiceCandidat]== _candidats);
         dataLimte[indDemande]= demandes[indDemande].delai+ now;
-        candidates[indDemande][_candidats]= true;
         demandes[indDemande].etatDemande = Etat.ENCOURS;
         demandes[indDemande].illustrateur = _candidats;
         _balance[indDemande][_candidats] =demandes[indDemande].remuneration;
@@ -213,6 +218,7 @@ function inscription(string memory nume) public  {
      }
 
      function sanctionne(address _membre) public {
+       require(estMembre(_membre),"cette Address n est pas dans la base de done");
          if(msg.sender == admin){
 
              addressBannies[_membre] = true;
@@ -224,9 +230,10 @@ function inscription(string memory nume) public  {
 
      }
 
-     function estEnRetard(uint indDemande, address _candidats) public  returns (bool){
+     function estEnRetard(uint indDemande) public  returns (bool){
          require(demandes[indDemande].entreprise == msg.sender);
-         require(candidates[indDemande][_candidats]== true);
+         require(estMembre(demandes[indDemande].illustrateur));
+      address _candidats = demandes[indDemande].illustrateur;
          if(dataLimte[indDemande]>now){
              reputation[_candidats] = reputation[_candidats] -1;
              sanctionne(_candidats);
