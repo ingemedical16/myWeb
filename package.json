@@ -1,6 +1,6 @@
 {
   "name": "PlaceDeMarche",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "truffle.js",
   "directories": {
@@ -10,13 +10,14 @@
     "dev": "lite-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ingmedical",
+  "author": "EL-Idrissi",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "^6.0.3",
     "lite-server": "^2.3.0"
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "truffle-hdwallet-provider": "^1.0.17"
+    "dotenv": "^6.0.0",
+    "truffle-hdwallet-provider": "0.0.6"
   }
 }

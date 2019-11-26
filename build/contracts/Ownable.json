@@ -8,15 +8,15 @@
       "type": "constructor"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/dife2/contracts/Ownable.sol\":\"Ownable\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/dife2/contracts/Ownable.sol\":{\"keccak256\":\"0x982cb721d4a0a57cf415ae9fb3441848fa1f6c7a1df9e5abd439233753041fa7\",\"urls\":[\"bzz-raw://804c3741639311957224f56f7eea624a109cc9c39bf85cb41198f5342fd5da82\",\"dweb:/ipfs/QmUpx4FcpPe2ZzQbbVrwEfXfgkZ7CWkAA62h5PPkztGQsK\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550603e80605d6000396000f3fe6080604052600080fdfea265627a7a72315820bd351c67c50876ada0ebba353a8452f38f4704f715768d32f76ec6fb05a004c364736f6c634300050c0032",
-  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820bd351c67c50876ada0ebba353a8452f38f4704f715768d32f76ec6fb05a004c364736f6c634300050c0032",
-  "sourceMap": "26:224:1:-;;;198:50;8:9:-1;5:2;;;30:1;27;20:12;5:2;198:50:1;233:10;225:5;;:18;;;;;;;;;;;;;;;;;;26:224;;;;;;",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/v6defi2/contracts/Ownable.sol\":\"Ownable\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/v6defi2/contracts/Ownable.sol\":{\"keccak256\":\"0x993f44e1820d78892c4b2ed076db3ae49fe8c242f77038298fac53d52072e92e\",\"urls\":[\"bzz-raw://b15cfec974b6ada26ce0a7c6c64cfa06d66725d45dcbb0561b098fafc541765f\",\"dweb:/ipfs/QmQU2duMfcZyxT8rTja7jyuTfdwnAhqAV6s541ieYadR4x\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50600080546001600160a01b03191633179055603e80602f6000396000f3fe6080604052600080fdfea265627a7a72315820be796eb5cd546fe731dc3757aea6684c3defd4cb266784e3f194c3ae65af66d064736f6c634300050c0032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820be796eb5cd546fe731dc3757aea6684c3defd4cb266784e3f194c3ae65af66d064736f6c634300050c0032",
+  "sourceMap": "26:224:1:-;;;198:50;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;225:5:1;:18;;-1:-1:-1;;;;;;225:18:1;233:10;225:18;;;26:224;;;;;;",
   "deployedSourceMap": "26:224:1:-;;;;;",
-  "source": "pragma solidity ^0.5.12;\n\ncontract Ownable {\n  // state variables\n  address  payable admin;\n\n  // modifiers\n  modifier onlyOwner() {\n    require(msg.sender == admin);\n    _;\n  }\n\n  // constructor\n  constructor() public {\n    admin = msg.sender;\n  }\n}\n",
-  "sourcePath": "/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/dife2/contracts/Ownable.sol",
+  "source": "pragma solidity ^0.5.11;\n\ncontract Ownable {\n  // state variables\n  address  payable admin;\n\n  // modifiers\n  modifier onlyOwner() {\n    require(msg.sender == admin);\n    _;\n  }\n\n  // constructor\n  constructor() public {\n    admin = msg.sender;\n  }\n}\n",
+  "sourcePath": "/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/v6defi2/contracts/Ownable.sol",
   "ast": {
-    "absolutePath": "/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/dife2/contracts/Ownable.sol",
+    "absolutePath": "/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/v6defi2/contracts/Ownable.sol",
     "exportedSymbols": {
       "Ownable": [
         81
@@ -31,7 +31,7 @@
           "solidity",
           "^",
           "0.5",
-          ".12"
+          ".11"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:24:1"
@@ -105,7 +105,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1059,
+                            "referencedDeclaration": 1084,
                             "src": "145:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -159,10 +159,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1062,
-                        1063
+                        1087,
+                        1088
                       ],
-                      "referencedDeclaration": 1062,
+                      "referencedDeclaration": 1087,
                       "src": "137:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -244,7 +244,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1059,
+                        "referencedDeclaration": 1084,
                         "src": "233:3:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -310,7 +310,7 @@
     "src": "0:251:1"
   },
   "legacyAST": {
-    "absolutePath": "/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/dife2/contracts/Ownable.sol",
+    "absolutePath": "/home/ingmedical16/exercices/AlyraSchool/HomeWork/Semaine4/v6defi2/contracts/Ownable.sol",
     "exportedSymbols": {
       "Ownable": [
         81
@@ -325,7 +325,7 @@
           "solidity",
           "^",
           "0.5",
-          ".12"
+          ".11"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:24:1"
@@ -399,7 +399,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1059,
+                            "referencedDeclaration": 1084,
                             "src": "145:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -453,10 +453,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1062,
-                        1063
+                        1087,
+                        1088
                       ],
-                      "referencedDeclaration": 1062,
+                      "referencedDeclaration": 1087,
                       "src": "137:7:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -538,7 +538,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1059,
+                        "referencedDeclaration": 1084,
                         "src": "233:3:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -609,7 +609,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.19",
-  "updatedAt": "2019-11-21T01:49:47.730Z",
+  "updatedAt": "2019-11-24T17:31:46.997Z",
   "devdoc": {
     "methods": {}
   },

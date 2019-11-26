@@ -1,6 +1,10 @@
-pragma solidity ^0.5.12;
+pragma solidity ^0.5.11;
 //pragma experimental ABIEncoderV2;
+
 import "./Ownable.sol";
+
+
+
 
 
 contract PlaceDeMarche is Ownable {
@@ -12,7 +16,7 @@ contract PlaceDeMarche is Ownable {
   mapping (address => bool) private addressBannies; // address bannies true adress bannies false
   mapping (uint => Demande) public demandes;
   mapping (uint =>mapping(uint => address))public candidates;
-  uint[] CandidatsCounter;
+  mapping(uint =>uint) CandidatsCounter;
   mapping(uint =>mapping(address=> uint256)) private _balance;
   uint demandeCounter;
  mapping(uint => mapping(address =>uint)) private delytopay;
@@ -73,6 +77,10 @@ function inscription(string memory nume) public  {
      membres[msg.sender]=true;
  }
 
+ function getReputation (address utilisateur ) public view returns(uint){
+   return reputation[utilisateur];
+ }
+
  function estMembre(address utilisateur) public view returns (bool) {
 
             if (membres[utilisateur]) {
@@ -91,6 +99,7 @@ function inscription(string memory nume) public  {
         address illustrateur;
         wallet.transfer(amount);
         demandeCounter++;
+        CandidatsCounter[demandeCounter];
         demandes[demandeCounter] = Demande(
           demandeCounter,
           msg.sender,
@@ -179,7 +188,8 @@ function inscription(string memory nume) public  {
         require(msg.sender != demende.entreprise);
         require(estMembre(msg.sender),"veuillez vous inscrire");
         require(reputation[msg.sender]>= demende.minReputation, "reputation insuffisante pour acceder a cette offre");
-        CandidatsCounter[_indice] +=1;
+        uint plusUn = CandidatsCounter[_indice] +1;
+        CandidatsCounter[_indice] =plusUn;
         candidates[_indice][CandidatsCounter[_indice]]= msg.sender;
         links[msg.sender].entreprise = demende.entreprise;
         links[msg.sender].url = "";
@@ -249,7 +259,7 @@ function inscription(string memory nume) public  {
          reputation[_membre] = reputation[_membre] + _satisfaction;
      }
 
-     function transferToIllstrateur(address payable _illestrateur,uint _id) public {
+     function transferToIllstrateur(address payable _illestrateur,uint _id) public payable {
          require(msg.sender == admin);
          require(!dejaPaye[_id]);
          require(demandes[_id].illustrateur == _illestrateur);
